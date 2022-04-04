@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HolidayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,12 @@ Route::post('register', [LoginController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
-    Route::post('user-detail', [LoginController::class, 'userDetail']);
+    Route::post('me', [LoginController::class, 'userDetail']);
     Route::post('logout', [LoginController::class, 'logout']);
+
+    // Holiday section
+    Route::get('getpublicholiday', [HolidayController::class, 'getPublicHoliday']);
+    Route::get('getschoolholiday', [HolidayController::class, 'getSchoolHoliday']);
 });
 
 Route::fallback(function(){
