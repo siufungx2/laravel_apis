@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\FuelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::middleware('auth:api')->group(function () {
     // Holiday section
     Route::get('getpublicholiday', [HolidayController::class, 'getPublicHoliday']);
     Route::get('getschoolholiday', [HolidayController::class, 'getSchoolHoliday']);
+
+    // Fuel list section
+    Route::get('fuel', [FuelController::class, 'getFuelList']);
+    Route::get('fuel/{search}', [FuelController::class, 'getFuelList']);
 });
 
 Route::fallback(function(){
